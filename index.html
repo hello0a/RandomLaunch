@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>점심 메뉴 추천</title>
+    <style>
+        /* CSS */
+        * { margin: 0; padding: 0;}
+        .container {
+            width: 720px;
+            height: 100vh;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .title { font-size: 32px; }
+        .menu-title { font-size: 32px; }
+        .menu-img {
+            width: 360px;
+            height: 240px;
+            border-radius: 20px;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+        }
+        #btn {
+            width: 360px;
+            height: 60px;
+            font-style: 20px;
+            border: none;
+            background-color: royalblue;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        #btn:hover {
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+        }
+        #btn:active {
+            box-shadow: none;
+        }
+    </style>
+</head>
+<!-- html -->
+<body>
+    <div class="container">
+        <h1 class="title">오늘 점심은?</h1>
+        <img id="img" src="./img/햄버거.png" alt="" class="menu-img">
+        <h3 id="menu" class="menu-title">메뉴 이름</h3>
+        <button id="btn" onclick="random()">랜덤 추천</button>
+    </div>
+
+    <script>
+        function random() {
+            // alert("버튼 클릭!")
+            // 1~20 사이의 랜덤 수 뽑기
+            const random = Math.floor(Math.random()* 20)
+            const menus = [
+                {name: "샌드위치", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbjDwZmjzPeeOYHW09NDnOAowQWyzcKIj5eA&s"},
+                {name: "떡볶이", img: "https://item.kakaocdn.net/do/3306167d7bee6f4f4c1b5195390d00359f17e489affba0627eb1eb39695f93dd"},
+                {name: "마라탕", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi-YLAeRtxH94mk4ssNdM8F6h40ua3Cq775A&s"},
+                {name: "돼지국밥", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOQ4lMZr8iV3WfjRM1UzeAdQanKe57ATa4mA&s"},
+                {name: "햄버거", img: "https://www.shutterstock.com/image-vector/emoticon-smiley-eating-hamburger-260nw-229517191.jpg"},
+
+                {name: "냉면", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkqDMyE3-hzzLTo27XmG-h1UfscHEPbLuFbQ&s"},
+                {name: "샐러드", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJkDF8n20D5-uv_Ln0OCh9xHBk0fuRPKuZuQ&s"},
+                {name: "라면", img: "https://ogqmarket.img.sooplive.co.kr/sticker/16f23d10df460ab/1.png"},
+                {name: "김밥", img: "https://cdn.crowdpic.net/detail-thumb/thumb_d_E41A3EA5614A31A0281EAC960FA2351F.png"},
+                {name: "돈까스", img: "https://ogqmarket.img.sooplive.co.kr/sticker/17c9ffbd0564927/7.png"},
+
+                {name: "초밥", img: "https://www.shutterstock.com/image-vector/tuna-sushi-food-sign-emoji-260nw-2200601097.jpg"},
+                {name: "치킨", img: "https://png.pngtree.com/png-vector/20240629/ourmid/pngtree-fried-chicken-stickers-png-image_12890597.png"},
+                {name: "피자", img: "https://png.pngtree.com/png-vector/20240317/ourmid/pngtree-vector-illustration-of-cute-pizza-emoji-png-image_11988820.png"},
+                {name: "짜장면", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQGCIg6akmqJQerpRnsVw0x7C3zJ2OZgYwHQ&s"},
+                {name: "탕수육", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZPxTnb7NV0RSTHZqylGfKQ43onKp_HxWFog&s"},
+                
+                {name: "파스타", img: "https://media.istockphoto.com/id/1337866642/ko/%EB%B2%A1%ED%84%B0/%EC%A0%91%EC%8B%9C%EC%97%90-%ED%86%A0%EB%A7%88%ED%86%A0-%EC%86%8C%EC%8A%A4%EC%99%80-%EC%8A%A4%ED%8C%8C%EA%B2%8C%ED%8B%B0-%EC%9D%B4%EB%AA%A8%ED%8B%B0%EC%BD%98-%EB%B2%A1%ED%84%B0-%EB%94%94%EC%9E%90%EC%9D%B8-%EC%95%84%EC%9D%B4%EC%BD%98-%ED%94%8C%EB%9E%AB-%EB%94%94%EC%9E%90%EC%9D%B8-%EA%B3%A0%EB%A6%BD.jpg?s=1024x1024&w=is&k=20&c=1jL216vzapps-dvPDw5pmDzhB-Ue3xo9SMbl8f07mXY="},
+                {name: "스테이크", img: "https://imagescdn.gettyimagesbank.com/500/201811/a11214706.jpg"},
+                {name: "설렁탕", img: "https://imagescdn.gettyimagesbank.com/500/201708/jv10941553.jpg"},
+                {name: "갈비탕", img: "https://item.kakaocdn.net/do/4a939d9c1bf69fa8885ed51ac9a598838f324a0b9c48f77dbce3a43bd11ce785"},
+                {name: "규카츠", img: "https://d20aeo683mqd6t.cloudfront.net/ko/articles/title_images/000/039/902/medium/shutterstock_1444047152.jpeg?2019"}
+            ]
+            // 필요한 요소 : 이미지, 메뉴 이름, 버튼
+            const img = document.getElementById("img")
+            const menu = document.getElementById("menu")
+            const btn = document.getElementById("btn")
+
+            // 버튼 잠금
+            btn.disabled = true
+            btn.style.opacity = 0.5
+
+            // 이미지 바꾸는 효과
+            let rolling = null
+            rolling = setInterval(() => { /* 초 설정 : 0.1초(ms 단위) */
+                const r = Math.floor(Math.random() * menus.length)
+                const randonMenu = menus[r]
+                img.src = randonMenu.img
+                menu.textContent = randonMenu.name        
+            }, 100)
+
+            // 3초 뒤 추천메뉴로 멈춤
+            setTimeout(() => {
+                clearInterval(rolling) // 이미지 바꾸기 멈춤
+                // 추천 메뉴 선택
+                const pickMenu = menus[random]
+                img.src = pickMenu.img
+                menu.textContent = pickMenu.name
+
+                // 버튼 잠금 해제
+                btn.disabled = false
+                btn.style.opacity = 1
+            },3000)
+        }
+    </script>
+</body>
+</html>
